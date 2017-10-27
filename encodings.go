@@ -1,0 +1,144 @@
+package mmal
+
+/*
+#include <interface/mmal/mmal.h>
+#include <interface/mmal/mmal_encodings.h>
+*/
+import "C"
+
+const (
+	EncodingH264               uint32 = C.MMAL_ENCODING_H264
+	EncodingMVC                uint32 = C.MMAL_ENCODING_MVC
+	EncodingH263               uint32 = C.MMAL_ENCODING_H263
+	EncodingMP4V               uint32 = C.MMAL_ENCODING_MP4V
+	EncodingMP2V               uint32 = C.MMAL_ENCODING_MP2V
+	EncodingMP1V               uint32 = C.MMAL_ENCODING_MP1V
+	EncodingWMV3               uint32 = C.MMAL_ENCODING_WMV3
+	EncodingWMV2               uint32 = C.MMAL_ENCODING_WMV2
+	EncodingWMV1               uint32 = C.MMAL_ENCODING_WMV1
+	EncodingWVC1               uint32 = C.MMAL_ENCODING_WVC1
+	EncodingVP8                uint32 = C.MMAL_ENCODING_VP8
+	EncodingVP7                uint32 = C.MMAL_ENCODING_VP7
+	EncodingVP6                uint32 = C.MMAL_ENCODING_VP6
+	EncodingTheora             uint32 = C.MMAL_ENCODING_THEORA
+	EncodingSpark              uint32 = C.MMAL_ENCODING_SPARK
+	EncodingMJPEG              uint32 = C.MMAL_ENCODING_MJPEG
+	EncodingJPEG               uint32 = C.MMAL_ENCODING_JPEG
+	EncodingGIF                uint32 = C.MMAL_ENCODING_GIF
+	EncodingPNG                uint32 = C.MMAL_ENCODING_PNG
+	EncodingPPM                uint32 = C.MMAL_ENCODING_PPM
+	EncodingTGA                uint32 = C.MMAL_ENCODING_TGA
+	EncodingBMP                uint32 = C.MMAL_ENCODING_BMP
+	EncodingI420               uint32 = C.MMAL_ENCODING_I420
+	EncodingI420Slice          uint32 = C.MMAL_ENCODING_I420_SLICE
+	EncodingYV12               uint32 = C.MMAL_ENCODING_YV12
+	EncodingI422               uint32 = C.MMAL_ENCODING_I422
+	EncodingI422Slice          uint32 = C.MMAL_ENCODING_I422_SLICE
+	EncodingYUYV               uint32 = C.MMAL_ENCODING_YUYV
+	EncodingYVYU               uint32 = C.MMAL_ENCODING_YVYU
+	EncodingUYVY               uint32 = C.MMAL_ENCODING_UYVY
+	EncodingVYUY               uint32 = C.MMAL_ENCODING_VYUY
+	EncodingNV12               uint32 = C.MMAL_ENCODING_NV12
+	EncodingNV21               uint32 = C.MMAL_ENCODING_NV21
+	EncodingARGB               uint32 = C.MMAL_ENCODING_ARGB
+	EncodingARGBSlice          uint32 = C.MMAL_ENCODING_ARGB_SLICE
+	EncodingRGBA               uint32 = C.MMAL_ENCODING_RGBA
+	EncodingRGBASlice          uint32 = C.MMAL_ENCODING_RGBA_SLICE
+	EncodingABGR               uint32 = C.MMAL_ENCODING_ABGR
+	EncodingABGRSlice          uint32 = C.MMAL_ENCODING_ABGR_SLICE
+	EncodingBGRA               uint32 = C.MMAL_ENCODING_BGRA
+	EncodingBGRASlice          uint32 = C.MMAL_ENCODING_BGRA_SLICE
+	EncodingRGB16              uint32 = C.MMAL_ENCODING_RGB16
+	EncodingRGB16Slice         uint32 = C.MMAL_ENCODING_RGB16_SLICE
+	EncodingRGB24              uint32 = C.MMAL_ENCODING_RGB24
+	EncodingRGB24Slice         uint32 = C.MMAL_ENCODING_RGB24_SLICE
+	EncodingRGB32              uint32 = C.MMAL_ENCODING_RGB32
+	EncodingRGB32Slice         uint32 = C.MMAL_ENCODING_RGB32_SLICE
+	EncodingBGR16              uint32 = C.MMAL_ENCODING_BGR16
+	EncodingBGR16Slice         uint32 = C.MMAL_ENCODING_BGR16_SLICE
+	EncodingBGR24              uint32 = C.MMAL_ENCODING_BGR24
+	EncodingBGR24Slice         uint32 = C.MMAL_ENCODING_BGR24_SLICE
+	EncodingBGR32              uint32 = C.MMAL_ENCODING_BGR32
+	EncodingBGR32Slice         uint32 = C.MMAL_ENCODING_BGR32_SLICE
+	EncodingI420_16            uint32 = C.MMAL_ENCODING_I420_16
+	EncodingBayerSBGGR10P      uint32 = C.MMAL_ENCODING_BAYER_SBGGR10P
+	EncodingBayerSGRBG10P      uint32 = C.MMAL_ENCODING_BAYER_SGRBG10P
+	EncodingBayerSGBRG10P      uint32 = C.MMAL_ENCODING_BAYER_SGBRG10P
+	EncodingBayerSRGGB10P      uint32 = C.MMAL_ENCODING_BAYER_SRGGB10P
+	EncodingBayerSBGGR8        uint32 = C.MMAL_ENCODING_BAYER_SBGGR8
+	EncodingBayerSGBRG8        uint32 = C.MMAL_ENCODING_BAYER_SGBRG8
+	EncodingBayerSGRBG8        uint32 = C.MMAL_ENCODING_BAYER_SGRBG8
+	EncodingBayerSRGGB8        uint32 = C.MMAL_ENCODING_BAYER_SRGGB8
+	EncodingBayerSBGGR12P      uint32 = C.MMAL_ENCODING_BAYER_SBGGR12P
+	EncodingBayerSGRBG12P      uint32 = C.MMAL_ENCODING_BAYER_SGRBG12P
+	EncodingBayerSGBRG12P      uint32 = C.MMAL_ENCODING_BAYER_SGBRG12P
+	EncodingBayerSRGGB12P      uint32 = C.MMAL_ENCODING_BAYER_SRGGB12P
+	EncodingBayerSBGGR16       uint32 = C.MMAL_ENCODING_BAYER_SBGGR16
+	EncodingBayerSGBRG16       uint32 = C.MMAL_ENCODING_BAYER_SGBRG16
+	EncodingBayerSGRBG16       uint32 = C.MMAL_ENCODING_BAYER_SGRBG16
+	EncodingBayerSRGGB16       uint32 = C.MMAL_ENCODING_BAYER_SRGGB16
+	EncodingBayerSBGGR10DPCM8  uint32 = C.MMAL_ENCODING_BAYER_SBGGR10DPCM8
+	EncodingBayerSGBRG10DPCM8  uint32 = C.MMAL_ENCODING_BAYER_SGBRG10DPCM8
+	EncodingBayerSGRBG10DPCM8  uint32 = C.MMAL_ENCODING_BAYER_SGRBG10DPCM8
+	EncodingBayerSRGGB10DPCM8  uint32 = C.MMAL_ENCODING_BAYER_SRGGB10DPCM8
+	EncodingYUVUV128           uint32 = C.MMAL_ENCODING_YUVUV128
+	EncodingYUVUV64_16         uint32 = C.MMAL_ENCODING_YUVUV64_16
+	EncodingOpaque             uint32 = C.MMAL_ENCODING_OPAQUE
+	EncodingEGLImage           uint32 = C.MMAL_ENCODING_EGL_IMAGE
+	EncodingPCMUnsignedBE      uint32 = C.MMAL_ENCODING_PCM_UNSIGNED_BE
+	EncodingPCMUnsignedLE      uint32 = C.MMAL_ENCODING_PCM_UNSIGNED_LE
+	EncodingPCMSignedBE        uint32 = C.MMAL_ENCODING_PCM_SIGNED_BE
+	EncodingPCMSignedLE        uint32 = C.MMAL_ENCODING_PCM_SIGNED_LE
+	EncodingPCMFloatBE         uint32 = C.MMAL_ENCODING_PCM_FLOAT_BE
+	EncodingPCMFloatLE         uint32 = C.MMAL_ENCODING_PCM_FLOAT_LE
+	EncodingPCMUnsigned        uint32 = C.MMAL_ENCODING_PCM_UNSIGNED
+	EncodingPCMSigned          uint32 = C.MMAL_ENCODING_PCM_SIGNED
+	EncodingPCMFloat           uint32 = C.MMAL_ENCODING_PCM_FLOAT
+	EncodingMP4A               uint32 = C.MMAL_ENCODING_MP4A
+	EncodingMPGA               uint32 = C.MMAL_ENCODING_MPGA
+	EncodingALAW               uint32 = C.MMAL_ENCODING_ALAW
+	EncodingMULAW              uint32 = C.MMAL_ENCODING_MULAW
+	EncodingADPCM_MS           uint32 = C.MMAL_ENCODING_ADPCM_MS
+	EncodingADPCM_IMA_MS       uint32 = C.MMAL_ENCODING_ADPCM_IMA_MS
+	EncodingADPCM_SWF          uint32 = C.MMAL_ENCODING_ADPCM_SWF
+	EncodingWMA1               uint32 = C.MMAL_ENCODING_WMA1
+	EncodingWMA2               uint32 = C.MMAL_ENCODING_WMA2
+	EncodingWMAP               uint32 = C.MMAL_ENCODING_WMAP
+	EncodingWMAL               uint32 = C.MMAL_ENCODING_WMAL
+	EncodingWMAV               uint32 = C.MMAL_ENCODING_WMAV
+	EncodingAMRNB              uint32 = C.MMAL_ENCODING_AMRNB
+	EncodingAMRWB              uint32 = C.MMAL_ENCODING_AMRWB
+	EncodingAMRWBP             uint32 = C.MMAL_ENCODING_AMRWBP
+	EncodingAC3                uint32 = C.MMAL_ENCODING_AC3
+	EncodingEAC3               uint32 = C.MMAL_ENCODING_EAC3
+	EncodingDTS                uint32 = C.MMAL_ENCODING_DTS
+	EncodingMLP                uint32 = C.MMAL_ENCODING_MLP
+	EncodingFLAC               uint32 = C.MMAL_ENCODING_FLAC
+	EncodingVorbis             uint32 = C.MMAL_ENCODING_VORBIS
+	EncodingSpeex              uint32 = C.MMAL_ENCODING_SPEEX
+	EncodingATRAC3             uint32 = C.MMAL_ENCODING_ATRAC3
+	EncodingATRACX             uint32 = C.MMAL_ENCODING_ATRACX
+	EncodingATRACL             uint32 = C.MMAL_ENCODING_ATRACL
+	EncodingMIDI               uint32 = C.MMAL_ENCODING_MIDI
+	EncodingEVRC               uint32 = C.MMAL_ENCODING_EVRC
+	EncodingNellymoser         uint32 = C.MMAL_ENCODING_NELLYMOSER
+	EncodingQCELP              uint32 = C.MMAL_ENCODING_QCELP
+	EncodingMP4VDivXDRM        uint32 = C.MMAL_ENCODING_MP4V_DIVX_DRM
+	EncodingVariantH264Default uint32 = C.MMAL_ENCODING_VARIANT_H264_DEFAULT
+	EncodingVariantH264AVC1    uint32 = C.MMAL_ENCODING_VARIANT_H264_AVC1
+	EncodingVariantH264Raw     uint32 = C.MMAL_ENCODING_VARIANT_H264_RAW
+	EncodingVariantMP4ADefault uint32 = C.MMAL_ENCODING_VARIANT_MP4A_DEFAULT
+	EncodingVariantMP4AADTS    uint32 = C.MMAL_ENCODING_VARIANT_MP4A_ADTS
+)
+
+const (
+	ColorSpaceUnknown      uint32 = C.MMAL_COLOR_SPACE_UNKNOWN
+	ColorSpaceITUR_BT601   uint32 = C.MMAL_COLOR_SPACE_ITUR_BT601
+	ColorSpaceITUR_BT709   uint32 = C.MMAL_COLOR_SPACE_ITUR_BT709
+	ColorSpaceJPEG_JFIF    uint32 = C.MMAL_COLOR_SPACE_JPEG_JFIF
+	ColorSpaceFCC          uint32 = C.MMAL_COLOR_SPACE_FCC
+	ColorSpaceSMPTE240M    uint32 = C.MMAL_COLOR_SPACE_SMPTE240M
+	ColorSpaceBT470_2_M    uint32 = C.MMAL_COLOR_SPACE_BT470_2_M
+	ColorSpaceBT470_2_BG   uint32 = C.MMAL_COLOR_SPACE_BT470_2_BG
+	ColorSpaceJFIF_Y16_255 uint32 = C.MMAL_COLOR_SPACE_JFIF_Y16_255
+)
